@@ -38,6 +38,10 @@ function selectPet(element) {
     element.querySelector('.pet-avatar').classList.add('selected');
 }
 
+function novoPet(){
+    window.location.href = "CadastroPet.html";
+}
+
 function toggleService(element) {
     element.classList.toggle('selected');
     calculateTotal();
