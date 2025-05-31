@@ -1,0 +1,240 @@
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .header {
+            padding: 15px 40px;
+            background-color: #112437;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .logo {
+            color: white;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: #f2cb87;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .user-actions a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-actions a:hover {
+            color: #f2cb87;
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .welcome-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(17, 36, 55, 0.1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: cardAppear 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #f2cb87;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .welcome-title {
+            color: #112437;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        }
+
+        .welcome-subtitle {
+            font-size: 22px;
+            color: #112437;
+            margin-bottom: 25px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 0.9s forwards;
+        }
+
+        .welcome-text {
+            font-size: 17px;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 1.2s forwards;
+        }
+
+        .login-prompt {
+            font-size: 18px;
+            color: #112437;
+            margin-bottom: 25px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 1.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-btn {
+            background-color: #112437;
+            color: #f2cb87;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(17, 36, 55, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .login-btn:hover {
+            background-color: #0a1829;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17, 36, 55, 0.4);
+        }
+
+        .btn-icon {
+            font-size: 18px;
+        }
+
+        .floating-paws {
+            position: absolute;
+            font-size: 60px;
+            color: rgba(242, 203, 135, 0.15);
+            animation: float 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .paw-1 {
+            top: 20%;
+            left: 10%;
+        }
+
+        .paw-2 {
+            bottom: 25%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 20px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .welcome-card {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            
+            .welcome-title {
+                font-size: 32px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 18px;
+            }
+            
+            .welcome-text {
+                font-size: 15px;
+            }
+        }
