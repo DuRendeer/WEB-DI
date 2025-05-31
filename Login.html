@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patas Du Jojo - Acessar ou criar conta</title>
+    <link rel="stylesheet" href="Style/Login.css">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Patas Du Jojo</a>
+        <div class="secure-env">
+            <svg class="secure-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+            </svg>
+            Ambiente Seguro
+        </div>
+    </header>
+
+    <main class="main-container page active" id="login-page">
+        <section class="login-section">
+            <h1 class="section-title">Acesse sua conta</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="email">E-mail ou CPF/CNPJ</label>
+                    <input 
+                        type="text" 
+                        id="email" 
+                        class="form-input" 
+                        placeholder="Digite seu e-mail ou CPF/CNPJ"
+                    >
+                    <div class="error-message" id="email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Senha</label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="Sua senha"
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Esqueci a senha</a>
+                    </div>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+
+                <button type="submit" class="login-btn">ENTRAR</button>
+            </form>
+
+            <div class="quick-access">
+                <div class="quick-access-title">Acesso Rápido</div>
+                <button class="quick-access-btn">Receber código de acesso rápido</button>
+            </div>
+        </section>
+
+        <section class="signup-section">
+            <h2 class="signup-title">Criar uma conta é rápido, fácil e gratuito!</h2>
+            <p class="signup-description">
+                Com a sua conta da Patas Du Jojo você tem acesso a Ofertas exclusivas, descontos, pode criar e gerenciar a sua Assinatura Patas Du Jojo, acompanhar os seus pedidos e muito mais!
+            </p>
+            <button class="signup-btn" onclick="showRegistration()">Criar minha conta</button>
+        </section>
+    </main>
+
+    <main class="main-container page" id="registration-page">
+        <section class="registration-section">
+            <h1 class="section-title">Criar sua conta Patas Du Jojo</h1>
+            
+            <div class="progress-indicator">
+                <div class="progress-step active"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+            </div>
+
+            <form id="registration-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-first-name">Nome *</label>
+                        <input 
+                            type="text" 
+                            id="reg-first-name" 
+                            class="form-input" 
+                            placeholder="Seu primeiro nome"
+                            required
+                        >
+                        <div class="error-message" id="reg-first-name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-last-name">Sobrenome *</label>
+                        <input 
+                            type="text" 
+                            id="reg-last-name" 
+                            class="form-input" 
+                            placeholder="Seu sobrenome"
+                            required
+                        >
+                        <div class="error-message" id="reg-last-name-error"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">E-mail *</label>
+                    <input 
+                        type="email" 
+                        id="reg-email" 
+                        class="form-input" 
+                        placeholder="seu@email.com"
+                        required
+                    >
+                    <div class="error-message" id="reg-email-error"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-cpf">CPF *</label>
+                        <input 
+                            type="text" 
+                            id="reg-cpf" 
+                            class="form-input" 
+                            placeholder="000.000.000-00"
+                            required
+                        >
+                        <div class="error-message" id="reg-cpf-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-phone">Telefone *</label>
+                        <input 
+                            type="tel" 
+                            id="reg-phone" 
+                            class="form-input" 
+                            placeholder="(11) 99999-9999"
+                            required
+                        >
+                        <div class="error-message" id="reg-phone-error"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-birth-date">Data de Nascimento *</label>
+                        <input 
+                            type="date" 
+                            id="reg-birth-date" 
+                            class="form-input"
+                            required
+                        >
+                        <div class="error-message" id="reg-birth-date-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-gender">Gênero</label>
+                        <select id="reg-gender" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                            <option value="nao-informar">Prefiro não informar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-password">Senha *</label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="reg-password" 
+                            class="form-input" 
+                            placeholder="Mínimo 8 caracteres"
+                            required
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword('reg-password')">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="error-message" id="reg-password-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-confirm-password">Confirmar Senha *</label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="reg-confirm-password" 
+                            class="form-input" 
+                            placeholder="Digite novamente sua senha"
+                            required
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword('reg-confirm-password')">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="error-message" id="reg-confirm-password-error"></div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms-agreement" required>
+                    <label for="terms-agreement">
+                        Eu li e aceito os <a href="#" target="_blank">Termos de Uso</a> e a <a href="#" target="_blank">Política de Privacidade</a> da Patas Du Jojo
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-agreement">
+                    <label for="newsletter-agreement">
+                        Quero receber ofertas exclusivas e novidades da Patas Du Jojo por e-mail
+                    </label>
+                </div>
+
+                <button type="submit" class="register-btn">CRIAR CONTA</button>
+            </form>
+        </section>
+
+        <section class="signup-section">
+            <h2 class="signup-title">Já tem uma conta?</h2>
+            <p class="signup-description">
+                Faça login na sua conta Patas Du Jojo e aproveite todas as vantagens exclusivas que preparamos para você!
+            </p>
+            <button class="back-to-login-btn" onclick="showLogin()">Fazer Login</button>
+        </section>
+    </main>
+    <img src="Cachorro&Gato.png" alt="Logo da Empresa" width="200" class="cachorro">
+
+    <div id="userNotFoundModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Usuário não encontrado</h2>
+            <p class="modal-message">
+                Não encontramos uma conta com esses dados. Para acessar a Patas Du Jojo, você precisa criar sua conta primeiro.
+            </p>
+            <button class="modal-btn" onclick="closeModalAndGoToRegister()">Criar Conta</button>
+            <button class="modal-btn secondary" onclick="closeModal()">Tentar Novamente</button>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">🎉 Bem-vindo à Patas Du Jojo!</h2>
+            <p class="modal-message" id="successMessage"></p>
+            <button class="modal-btn" onclick="closeModal()">Continuar</button>
+        </div>
+    </div>
+    <script src="Script/Login.js"></script>
+
+</body>
+</html>
