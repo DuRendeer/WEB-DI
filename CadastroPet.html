@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patas Du Jojo - Cadastro de Pet</title>
+    <link rel="stylesheet" href="Style/CadastroPet.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="marca">
+            <img src="Assets/Logo.png" alt="Patas Du Jojo Logo" class="imagem-marca">
+            Patas <span>Du Jojo</span>
+        </div>
+    </header>
+    
+    <main class="conteudo-principal">
+        <section class="secao-cadastro">
+            <div class="icone-pet">🐾</div>
+            <h1 class="titulo-cadastro">CADASTRAR PET</h1>
+            <h2 class="subtitulo-secao">Vamos conhecer melhor o seu melhor amigo</h2>
+            
+            <form id="formularioNovoPet">
+                <div class="linha-formulario">
+                    <div class="grupo-campo">
+                        <label for="nomeAnimal" class="rotulo-campo">Nome do Pet *</label>
+                        <input type="text" id="nomeAnimal" name="nomeAnimal" class="campo-texto" required placeholder="Ex: Rex, Mimi, Buddy...">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="idadeAnimal" class="rotulo-campo">Idade</label>
+                        <input type="text" id="idadeAnimal" name="idadeAnimal" class="campo-texto" placeholder="Ex: 2 anos, 6 meses...">
+                    </div>
+                </div>
+
+                <div class="linha-formulario">
+                    <div class="grupo-campo">
+                        <label class="rotulo-campo">Tipo de Animal *</label>
+                        <div class="grupo-opcoes">
+                            <label class="opcao-radio">
+                                <input type="radio" name="tipoAnimal" value="cachorro" required>
+                                <span>🐶 Cachorro</span>
+                            </label>
+                            <label class="opcao-radio">
+                                <input type="radio" name="tipoAnimal" value="gato" required>
+                                <span>🐱 Gato</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="grupo-campo">
+                        <label class="rotulo-campo">Sexo *</label>
+                        <div class="grupo-opcoes">
+                            <label class="opcao-radio">
+                                <input type="radio" name="sexoAnimal" value="macho" required>
+                                <span>♂️ Macho</span>
+                            </label>
+                            <label class="opcao-radio">
+                                <input type="radio" name="sexoAnimal" value="femea" required>
+                                <span>♀️ Fêmea</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linha-formulario">
+                    <div class="grupo-campo">
+                        <label for="racaAnimal" class="rotulo-campo">Raça</label>
+                        <input type="text" id="racaAnimal" name="racaAnimal" class="campo-texto" placeholder="Ex: Labrador, Persa, SRD...">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="pesoAnimal" class="rotulo-campo">Peso (kg)</label>
+                        <input type="text" id="pesoAnimal" name="pesoAnimal" class="campo-texto" placeholder="Ex: 15.5">
+                    </div>
+                </div>
+
+                <div class="linha-formulario">
+                    <div class="grupo-campo">
+                        <label for="corAnimal" class="rotulo-campo">Cor/Pelagem</label>
+                        <input type="text" id="corAnimal" name="corAnimal" class="campo-texto" placeholder="Ex: Caramelo, Branco, Malhado...">
+                    </div>
+                    <div class="grupo-campo">
+                        <label class="rotulo-campo">Castrado?</label>
+                        <div class="grupo-opcoes">
+                            <label class="opcao-radio">
+                                <input type="radio" name="estaCastrado" value="sim">
+                                <span>✅ Sim</span>
+                            </label>
+                            <label class="opcao-radio">
+                                <input type="radio" name="estaCastrado" value="nao">
+                                <span>❌ Não</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grupo-campo largura-completa">
+                    <label for="observacoesEspeciais" class="rotulo-campo">Observações Especiais</label>
+                    <textarea id="observacoesEspeciais" name="observacoesEspeciais" class="campo-observacoes" placeholder="Conte sobre o temperamento, medicações, alergias ou qualquer informação importante sobre seu pet..."></textarea>
+                </div>
+
+                <div class="grupo-campo largura-completa">
+                    <label for="fotoAnimal" class="rotulo-campo">Foto do Pet</label>
+                    <div class="container-upload">
+                        <input type="file" id="fotoAnimal" name="fotoAnimal" class="entrada-arquivo" accept="image/*">
+                        <label for="fotoAnimal" class="rotulo-upload" id="labelArquivo">
+                            <span>📷</span>
+                            <span>Clique para adicionar uma foto do seu pet</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="botao-principal">
+                    Cadastrar Pet <span class="icone-botao">🐾</span>
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById('formularioNovoPet');
+        const campoFoto = document.getElementById('fotoAnimal');
+        const labelArquivo = document.getElementById('labelArquivo');
+        const todosOsCampos = document.querySelectorAll('input, select, textarea');
+
+        function verificarCamposObrigatorios(informacoesPet) {
+            return informacoesPet.nomeAnimal && informacoesPet.tipoAnimal && informacoesPet.sexoAnimal;
+        }
+
+        function extrairInformacoesFormulario() {
+            const dadosFormulario = new FormData(formulario);
+            const informacoesPet = {};
+            
+            for (let [campo, valor] of dadosFormulario.entries()) {
+                informacoesPet[campo] = valor;
+            }
+            
+            return informacoesPet;
+        }
+
+        function guardarPetNaMemoria(informacoesPet) {
+            const novoAnimalCadastrado = {
+                identificador: Date.now(),
+                nome: informacoesPet.nomeAnimal,
+                idade: informacoesPet.idadeAnimal || 'Não informado',
+                tipo: informacoesPet.tipoAnimal,
+                sexo: informacoesPet.sexoAnimal,
+                raca: informacoesPet.racaAnimal || 'Não informado',
+                peso: informacoesPet.pesoAnimal || 'Não informado',
+                cor: informacoesPet.corAnimal || 'Não informado',
+                castrado: informacoesPet.estaCastrado || 'Não informado',
+                observacoes: informacoesPet.observacoesEspeciais || 'Nenhuma observação',
+                foto: informacoesPet.fotoAnimal || null,
+                diaCadastro: new Date().toLocaleDateString('pt-BR'),
+                horarioCadastro: new Date().toLocaleTimeString('pt-BR')
+            };
+            
+            const listaDeAnimais = JSON.parse(localStorage.getItem('meusPets')) || [];
+            listaDeAnimais.push(novoAnimalCadastrado);
+            localStorage.setItem('meusPets', JSON.stringify(listaDeAnimais));
+            
+            return novoAnimalCadastrado;
+        }
+
+        function exibirMensagemSucesso() {
+            alert('Pet cadastrado com sucesso! 🎉\n\nRedirecionando para agendamento...');
+            setTimeout(() => {
+                window.location.href = 'Agendamento.html';
+            }, 1500);
+        }
+
+        function alterarVisualizacaoArquivo(arquivo) {
+            if (arquivo) {
+                labelArquivo.innerHTML = `<span>✅</span><span>Foto selecionada: ${arquivo.name}</span>`;
+                labelArquivo.style.borderColor = '#4CAF50';
+                labelArquivo.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
+            }
+        }
+
+        function configurarEfeitosFoco(elemento) {
+            elemento.addEventListener('focus', () => {
+                elemento.style.transform = 'scale(1.02)';
+                elemento.style.transition = 'transform 0.3s ease';
+            });
+            
+            elemento.addEventListener('blur', () => {
+                elemento.style.transform = 'scale(1)';
+            });
+        }
+
+        formulario.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            
+            const informacoesPet = extrairInformacoesFormulario();
+            
+            if (!verificarCamposObrigatorios(informacoesPet)) {
+                alert('Por favor, preencha todos os campos obrigatórios (*)');
+                return;
+            }
+            
+            const animalSalvo = guardarPetNaMemoria(informacoesPet);
+            console.log('Novo pet cadastrado:', animalSalvo);
+            exibirMensagemSucesso();
+        });
+
+        campoFoto.addEventListener('change', function(evento) {
+            const arquivoSelecionado = evento.target.files[0];
+            alterarVisualizacaoArquivo(arquivoSelecionado);
+        });
+
+        todosOsCampos.forEach(configurarEfeitosFoco);
+    </script>
+</body>
+</html>

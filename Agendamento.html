@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patas Du Jojo - Agendamento</title>
+  <link rel="stylesheet" href="Style/Agendamento.css">
+</head>
+<body>
+  <div class="paw-decoration paw1">🐾</div>
+  <div class="paw-decoration paw2">🐾</div>
+  <div class="paw-decoration paw3">🐾</div>
+
+  <header class="header">
+    <div class="logo">
+      <img src="Assets/Logo.png" alt="Patas Du Jojo Logo" class="logo-image">
+      Patas <span>Du Jojo</span>
+    </div>
+  </header>
+
+  <div class="agendamento-container">
+    <a href="Banho&Tosa.html" class="back-button">← Voltar</a>
+    <h1 class="agendamento-title">Agendamento</h1>
+
+    <div class="step-indicator">
+      <div class="step active" id="etapa1">
+        1
+        <div class="step-label">Escolha do Pet</div>
+      </div>
+      <div class="step" id="etapa2">
+        2
+        <div class="step-label">Serviços</div>
+      </div>
+      <div class="step" id="etapa3">
+        3
+        <div class="step-label">Data e Horário</div>
+      </div>
+      <div class="step" id="etapa4">
+        4
+        <div class="step-label">Confirmação</div>
+      </div>
+    </div>
+
+    <div class="step-content active" id="tela-etapa1">
+      <p class="section-subtitle">Meus Pets</p>
+      <h2 class="section-title">Escolha o pet para realizar o agendamento</h2>
+
+      <div class="pet-list" id="containerPets"></div>
+
+      <button class="add-pet-button" onclick="irParaCadastroPet()">
+        <span>+</span> Cadastrar novo pet
+      </button>
+
+      <div class="button-container">
+        <button class="btn" onclick="avancarEtapa()">Continuar <span class="btn-icon">→</span></button>
+      </div>
+    </div>
+
+    <div class="step-content" id="tela-etapa2">
+      <h2 class="section-title">Escolha os serviços</h2>
+
+      <div class="service-section">
+        <h3 class="section-subtitle">Banho</h3>
+        <div class="service-option" onclick="marcarServico(this)" data-valor="60.00">
+          <div class="service-radio"></div>
+          <div class="service-info">
+            <div class="service-name">Banho completo</div>
+            <div class="service-description">Banho completo com produtos de alta qualidade</div>
+          </div>
+          <div class="service-price">R$ 60,00</div>
+        </div>
+        <div class="service-option" onclick="marcarServico(this)" data-valor="80.00">
+          <div class="service-radio"></div>
+          <div class="service-info">
+            <div class="service-name">Banho premium</div>
+            <div class="service-description">Banho premium com produtos importados</div>
+          </div>
+          <div class="service-price">R$ 80,00</div>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <h3 class="section-subtitle">Tratamento</h3>
+        <div class="service-option" onclick="marcarServico(this)" data-valor="15.97" data-minutos="15">
+          <div class="service-radio"></div>
+          <div class="service-info">
+            <div class="service-name">Banho terapêutico</div>
+            <div class="service-description">Obrigatório para shampoos com tempo de ação</div>
+            <div class="service-time">🕒 15min</div>
+          </div>
+          <div class="service-price">+ R$ 15,97</div>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <h3 class="section-subtitle">Cuidados adicionais</h3>
+        <div class="service-option" onclick="marcarServico(this)" data-valor="9.00">
+          <div class="service-radio"></div>
+          <div class="service-info">
+            <div class="service-name">Escovação dental</div>
+            <div class="service-description">Indicado para prevenção de tártaro e mau hálito</div>
+          </div>
+          <div class="service-price">+ R$ 9,00</div>
+        </div>
+        <div class="service-option" onclick="marcarServico(this)" data-valor="32.00">
+          <div class="service-radio"></div>
+          <div class="service-info">
+            <div class="service-name">Hidratação profunda</div>
+            <div class="service-description">Indicado para restaurar o brilho dos pelos</div>
+          </div>
+          <div class="service-price">+ R$ 32,00</div>
+        </div>
+      </div>
+
+      <div class="total-row">
+        <div>Total</div>
+        <div id="valorTotalServicos">R$ 0,00</div>
+      </div>
+
+      <div class="button-container">
+        <button class="btn" onclick="voltarEtapa()">← Voltar</button>
+        <button class="btn" onclick="avancarEtapa()">Continuar <span class="btn-icon">→</span></button>
+      </div>
+    </div>
+
+    <div class="step-content" id="tela-etapa3">
+      <h2 class="section-title">Qual a melhor data e horário?</h2>
+
+      <div class="pet-info" id="dadosPetEscolhido"></div>
+
+      <div class="calendar">
+        <div class="month-header">
+          <div class="month-title" id="nomeDoMes"></div>
+          <div class="month-nav">
+            <button class="month-nav-button" onclick="voltarMes()">←</button>
+            <button class="month-nav-button" onclick="avancarMes()">→</button>
+          </div>
+        </div>
+
+        <div class="calendar-grid" id="diasDoCalendario">
+          <div class="weekday">D</div>
+          <div class="weekday">S</div>
+          <div class="weekday">T</div>
+          <div class="weekday">Q</div>
+          <div class="weekday">Q</div>
+          <div class="weekday">S</div>
+          <div class="weekday">S</div>
+        </div>
+      </div>
+
+      <h3 class="section-subtitle">Em qual horário?</h3>
+      <p class="section-subtitle">🕒 Tempo total de atendimento</p>
+
+      <div class="time-slots">
+        <div class="time-slot" onclick="escolherHorario(this)">10:00</div>
+        <div class="time-slot" onclick="escolherHorario(this)">11:00</div>
+        <div class="time-slot" onclick="escolherHorario(this)">13:00</div>
+        <div class="time-slot" onclick="escolherHorario(this)">14:00</div>
+        <div class="time-slot" onclick="escolherHorario(this)">15:00</div>
+        <div class="time-slot" onclick="escolherHorario(this)">17:00</div>
+        <div class="time-slot disabled">18:00</div>
+        <div class="time-slot disabled">19:00</div>
+      </div>
+
+      <div class="button-container">
+        <button class="btn" onclick="voltarEtapa()">← Voltar</button>
+        <button class="btn" onclick="avancarEtapa()">Continuar <span class="btn-icon">→</span></button>
+      </div>
+    </div>
+
+    <div class="step-content" id="tela-etapa4">
+      <h2 class="section-title">Confirme seu agendamento</h2>
+
+      <div class="summary-section">
+        <div class="summary-item">
+          <div class="summary-label">🕒 Horário</div>
+          <div class="summary-value" id="horarioEscolhido">-</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">⏱️ Tempo aproximado</div>
+          <div class="summary-value" id="tempoTotalAtendimento">-</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="summary-section" id="resumoFinal">
+        <h3 class="section-subtitle">Serviços agendados</h3>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="summary-section">
+        <label for="observacoesFinais" class="section-subtitle">Observações <span style="color:#999">(opcional)</span></label>
+        <textarea id="observacoesFinais" class="notes-input" placeholder="Alergias, temperamento, doenças, entre outros."></textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="summary-section">
+        <div class="summary-item">
+          <div class="summary-label">Total de serviços</div>
+          <div class="summary-value" id="valorServicos">R$ 0,00</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Total de descontos</div>
+          <div class="summary-value discount">-R$ 0,00</div>
+        </div>
+        <div class="total-row">
+          <div>Total</div>
+          <div id="valorFinalAgendamento">R$ 0,00</div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button class="btn" onclick="voltarEtapa()">← Voltar</button>
+        <button class="btn" onclick="confirmarAgendamento()">Finalizar <span class="btn-icon">✓</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="Script/Agendamento.js"></script>
+</body>
+</html>
