@@ -4,7 +4,7 @@
                 id: 1,
                 nome: 'Ração Premium Cães',
                 preco: 89.90,
-                imagem: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400&h=300&fit=crop',
+                imagem: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.petdoginbox.com.br%2Fracao-super-premium-pro-plan-adultos-racas-medias-15-kg-116883%2Fp&psig=AOvVaw0ocxnqYSapwLxVUrzbm4hv&ust=1749239742806000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJDatoKI240DFQAAAAAdAAAAABAE ',
                 categoria: 'alimentacao'
             },
             {
