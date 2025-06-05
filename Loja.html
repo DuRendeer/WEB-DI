@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patas DU Jojo - Tudo para seu Pet</title>
+    <link rel="stylesheet" href="Loja.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                🐾 Patas DU Jojo
+            </div>
+            <div class="cart-icon" onclick="abrirCarrinho()">
+                🛒
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Tudo que seu Pet Precisa</h1>
+            <p>Produtos de qualidade, entrega rápida e os melhores preços para cuidar do seu melhor amigo</p>
+            <a href="#produtos" class="cta-button">Ver Produtos</a>
+        </div>
+    </section>
+
+    <section class="products" id="produtos">
+        <div class="container">
+            <h2 class="section-title">Produtos em Destaque</h2>
+            <p class="section-subtitle">Os mais vendidos da nossa loja</p>
+            
+            <div class="products-grid" id="area-produtos"></div>
+        </div>
+    </section>
+
+
+    <!-- Modal do Carrinho/Checkout -->
+    <div id="modalCarrinho" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="titulo-modal">Seu Carrinho</h3>
+                <span class="close" onclick="fecharCarrinho()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="conteudo-carrinho">
+                    <div id="itens-carrinho"></div>
+                    <div class="cart-total" id="total-carrinho">Total: R$ 0,00</div>
+                    <button class="btn" style="width: 100%;" onclick="iniciarCompra()">Finalizar Compra</button>
+                </div>
+
+                <!-- Etapas do Checkout -->
+                <div id="etapas-compra" class="checkout-steps" style="display: none;">
+                    
+                    <!-- Etapa 1: Dados Pessoais -->
+                    <div id="etapa-1" class="step active">
+                        <div class="step-header">Dados de quem irá receber</div>
+                        <div class="form-group">
+                            <label for="nome">Nome Completo:</label>
+                            <input type="text" id="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone:</label>
+                            <input type="tel" id="telefone" required>
+                        </div>
+                        <button class="btn" onclick="proximaEtapa(2)">Continuar</button>
+                    </div>
+
+                    <!-- Etapa 2: Endereço -->
+                    <div id="etapa-2" class="step">
+                        <div class="step-header">Endereço de Entrega</div>
+                        <div class="form-group">
+                            <label for="cep">CEP:</label>
+                            <input type="text" id="cep" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endereco">Endereço:</label>
+                            <input type="text" id="endereco" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número:</label>
+                            <input type="text" id="numero" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" id="cidade" required>
+                        </div>
+                        <button class="btn btn-secondary" onclick="etapaAnterior(1)">Voltar</button>
+                        <button class="btn" onclick="proximaEtapa(3)">Continuar</button>
+                    </div>
+
+                    <!-- Etapa 3: Pagamento -->
+                    <div id="etapa-3" class="step">
+                        <div class="step-header">Forma de Pagamento</div>
+                        <div class="payment-methods">
+                            <div class="payment-method" onclick="escolherPagamento('credito')">
+                                <h4>💳 Cartão de Crédito</h4>
+                                <p>Até 12x sem juros</p>
+                            </div>
+                            <div class="payment-method" onclick="escolherPagamento('debito')">
+                                <h4>💳 Cartão de Débito</h4>
+                                <p>À vista</p>
+                            </div>
+                            <div class="payment-method" onclick="escolherPagamento('pix')">
+                                <h4>📱 PIX</h4>
+                                <p>5% de desconto</p>
+                            </div>
+                        </div>
+                        <div id="detalhes-pagamento" style="margin-top: 2rem;"></div>
+                        <button class="btn btn-secondary" onclick="etapaAnterior(2)">Voltar</button>
+                        <button class="btn" id="botao-finalizar" onclick="finalizarPedido()" style="display: none;">Finalizar Pedido</button>
+                    </div>
+
+                    <!-- Etapa 4: Confirmação -->
+                    <div id="etapa-4" class="step">
+                        <div class="step-header">Pedido Confirmado!</div>
+                        <div class="success-animation">
+                            <div class="success-icon">✅</div>
+                            <h3>Parabéns!</h3>
+                            <p>Seu pedido foi realizado com sucesso!</p>
+                            <p><strong>Número do pedido: <span id="numero-pedido"></span></strong></p>
+                            <p>Você receberá um e-mail com os detalhes da compra.</p>
+                            <button class="btn" onclick="fecharCarrinho(); resetarCompra();">Continuar Comprando</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Patas DU Jojo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Loja.js"> </script>
+</body>
+</html>
