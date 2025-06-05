@@ -1,14 +1,67 @@
 class UserManager {
     constructor() {
         this.registeredUsers = new Map();
+        this.loadUsers();
+        this.createDefaultAdmin();
+    }
+
+    // Carrega usuários do localStorage
+    loadUsers() {
+        try {
+            const savedUsers = localStorage.getItem('registeredUsers');
+            if (savedUsers) {
+                const usersArray = JSON.parse(savedUsers);
+                usersArray.forEach(user => {
+                    this.registeredUsers.set(user.email.toLowerCase(), user);
+                });
+            }
+        } catch (error) {
+            console.log('Erro ao carregar usuários do localStorage:', error);
+        }
+    }
+
+    // Salva usuários no localStorage
+    saveUsers() {
+        try {
+            const usersArray = Array.from(this.registeredUsers.values());
+            localStorage.setItem('registeredUsers', JSON.stringify(usersArray));
+        } catch (error) {
+            console.log('Erro ao salvar usuários no localStorage:', error);
+        }
+    }
+
+    // Cria conta padrão do administrador
+    createDefaultAdmin() {
+        const adminEmail = 'adm@gmail.com';
+        if (!this.registeredUsers.has(adminEmail)) {
+            const adminUser = {
+                firstName: 'Administrador',
+                lastName: 'Sistema',
+                email: adminEmail,
+                cpf: '000.000.000-00',
+                phone: '(00) 00000-0000',
+                birthDate: '1990-01-01',
+                gender: 'Não informado',
+                password: '12345678',
+                newsletterAgreed: false,
+                registeredAt: new Date(),
+                isAdmin: true
+            };
+            this.registeredUsers.set(adminEmail, adminUser);
+            this.saveUsers();
+        }
     }
 
     registerUser(userData) {
         const userKey = userData.email.toLowerCase();
-        this.registeredUsers.set(userKey, {
+        const newUser = {
             ...userData,
-            registeredAt: new Date()
-        });
+            registeredAt: new Date(),
+            isAdmin: false
+        };
+        
+        this.registeredUsers.set(userKey, newUser);
+        this.saveUsers(); // Salva no localStorage
         return true;
     }
 
@@ -217,7 +270,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const loginResult = userManager.validateLogin(identifier, password);
             
             if (loginResult.success) {
-                showSuccessModal(`Bem-vindo de volta, ${loginResult.user.firstName}! Login realizado com sucesso.`);
+                const welcomeMessage = loginResult.user.isAdmin ? 
+                    `Bem-vindo, Administrador! Login realizado com sucesso.` :
+                    `Bem-vindo de volta, ${loginResult.user.firstName}! Login realizado com sucesso.`;
+                
+                showSuccessModal(welcomeMessage);
                 document.getElementById('login-form').reset();
             } else {
                 if (loginResult.error === 'Usuário não encontrado') {
