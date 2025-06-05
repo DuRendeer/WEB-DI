@@ -11,7 +11,7 @@
                 id: 2,
                 nome: 'Areia Sanitária Gatos',
                 preco: 24.90,
-                imagem: 'https://images.unsplash.com/photo-1548681528-6a5c45b66b42?w=400&h=300&fit=crop',
+                imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXVPehODQE-k9lYXrXX-m5XQcmNwG6Go5rPw&s',
                 categoria: 'higiene'
             },
             {
@@ -25,21 +25,21 @@
                 id: 4,
                 nome: 'Casinha Confort',
                 preco: 149.90,
-                imagem: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=300&fit=crop',
+                imagem: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRtywXBcw-C0bl4CuBguF-2Um0bkkiT4oT91gT8SmPMjJumrHvc6li0E9gp7XF6r_UtXmP_u7KcQokZI3B9zwLEINIYmC26IccJurXS52_BTsijTYwJBEt-ENoWncdwZ4z7zdF6JTKVO-U&usqp=CAc',
                 categoria: 'acessorios'
             },
             {
                 id: 5,
                 nome: 'Shampoo Pet Deluxe',
                 preco: 19.90,
-                imagem: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
+                imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5RFhfkn0HBhCu6dI3cFAABy5bxVvwwp2qjA&s',
                 categoria: 'higiene'
             },
             {
                 id: 6,
                 nome: 'Kit Higiene Bucal',
                 preco: 45.90,
-                imagem: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&h=300&fit=crop',
+                imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFVFBGwhvOKWXtyEswQSUxV6xEwwHn8tK0uw&s',
                 categoria: 'higiene'
             }
         ];
